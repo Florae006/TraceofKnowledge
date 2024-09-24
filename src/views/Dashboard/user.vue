@@ -1,35 +1,12 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref } from 'vue';
+import { useUserInfoStore } from '@/store/userInfo';
+import { useProjectBaseInfoStore } from '@/store/projectBaseInfo';
 // const datevalue = ref(new Date())
 
-const userDetail = ref({
-  name: '张三',
-  school: '实验中学',
-  level: '高中一年级',
-});
+const userDetail = ref(useUserInfoStore().getUserInfo());
 
-const menuNav = ref([
-  {
-    name: '个人中心',
-    router:'user',
-  },
-  {
-    name: '知识图谱',
-    router:'knowledge',
-  },
-  {
-    name: '测评管理',
-    router:'test',
-  },
-  {
-    name: '数据采集',
-    router:'data',
-  },
-  {
-    name: '首页',
-    router:'home',
-  },
-])
+const menuNav = ref(useProjectBaseInfoStore().getMenuNav());
 
 const questionList = ref([
   {
@@ -201,16 +178,15 @@ const qList = ref([
 
       <div class="aside">
         <div class="usercard">
-          <img class="avatar" src="../assets/img/avatar.png" alt="">
+          <img class="avatar" :src="userDetail.avatar" alt="">
           <div class="userinfo">
-            <span class="name">{{ userDetail.name }}</span>
+            <span class="name">{{ userDetail.nickname }}</span>
             <span class="school">{{ userDetail.school }}</span>
             <span class="level">{{ userDetail.level }}</span>
           </div>
-          </div>
-
-          <div class="mytodolist">
-            <el-scrollbar height="60%">
+        </div>
+        <div class="mytodolist">
+          <el-scrollbar height="60%">
             <h3 class="todo-header">答题卡</h3>
             <div class="todo-content" v-for="i in questionList">
               <span class="left">{{ i.type }}</span>
@@ -223,7 +199,7 @@ const qList = ref([
                 </span>
               </div>
             </div>
-            </el-scrollbar>
+          </el-scrollbar>
 
         </div>
       </div>

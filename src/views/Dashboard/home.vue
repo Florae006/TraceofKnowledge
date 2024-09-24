@@ -1,294 +1,20 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref } from 'vue';
+import { useUserInfoStore } from '@/store/userInfo';
+import { useProjectBaseInfoStore } from '@/store/projectBaseInfo';
 // const datevalue = ref(new Date())
 
 import { Search } from '@element-plus/icons-vue'
 
-const userDetail = ref({
-  name: '张三',
-  school: '实验中学',
-  level: '高中一年级',
-});
+const userDetail = ref(useUserInfoStore().getUserInfo());
 
-const menuNav = ref([
-  {
-    name: '个人中心',
-    router:'user',
-  },
-  {
-    name: '知识图谱',
-    router:'knowledge',
-  },
-  {
-    name: '测评管理',
-    router:'test',
-  },
-  {
-    name: '数据采集',
-    router:'data',
-  },
-  {
-    name: '首页',
-    router:'home',
-  },
-])
+const menuNav = ref(useProjectBaseInfoStore().getMenuNav());
 
-const testTime = ref(new Date().getFullYear() + '-' + (new Date().getMonth() + 1) + '-' + new Date().getDate());
 
-const mylist = ref([
-  {
-    content: '数学小测',
-    time: testTime.value,
-  },
-  {
-    content: '数学小测',
-    time: testTime.value,
-  },
-  {
-    content: '数学小测',
-    time: testTime.value,
-  },
-  {
-    content: '数学小测',
-    time: testTime.value,
-  },
-  {
-    content: '数学小测',
-    time: testTime.value,
-  },
-  {
-    content: '数学小测',
-    time: testTime.value,
-  },
-  {
-    content: '数学小测',
-    time: testTime.value,
-  },
-])
+const mylist = ref(useUserInfoStore().getTodoList());
 
-const getRandomInt = (max: number) => {
-  return Math.floor(Math.random() * max) - 1;
-}
 
-const tableData = ref([
-  {
-    knowledgePoints: '集合',
-    knowledgeStatus: '掌握',
-    prediction: Math.random().toFixed(2),
-    spendTime: getRandomInt(180)+3+"min",
-    lasthint: getRandomInt(180).toString(),
-  },
-  {
-    knowledgePoints: '基本初等函数',
-    knowledgeStatus: '掌握',
-    prediction: Math.random().toFixed(2),
-    spendTime: getRandomInt(180)+3+"min",
-    lasthint: getRandomInt(180),
-  },
-  {
-    knowledgePoints: '函数应用',
-    knowledgeStatus: '掌握',
-    prediction: Math.random().toFixed(2),
-    spendTime: getRandomInt(180)+3+"min",
-    lasthint: getRandomInt(180),
-  },
-  {
-    knowledgePoints: '空间几何体',
-    knowledgeStatus: '掌握',
-    prediction: Math.random().toFixed(2),
-    spendTime: getRandomInt(180)+3+"min",
-    lasthint: getRandomInt(180),
-  },
-  {
-    knowledgePoints: '点',
-    knowledgeStatus: '掌握',
-    prediction: Math.random().toFixed(2),
-    spendTime: getRandomInt(180)+3+"min",
-    lasthint: getRandomInt(180),
-  },
-  {
-    knowledgePoints: '直线与方程',
-    knowledgeStatus: '掌握',
-    prediction: Math.random().toFixed(2),
-    spendTime: getRandomInt(180)+3+"min",
-    lasthint: getRandomInt(180),
-  },
-  {
-    knowledgePoints: '圆和方程',
-    knowledgeStatus: '掌握',
-    prediction: Math.random().toFixed(2),
-    spendTime: getRandomInt(180)+3+"min",
-    lasthint: getRandomInt(180),
-  },
-  {
-    knowledgePoints: '直线和平面的位置关系',
-    knowledgeStatus: '掌握',
-    prediction: Math.random().toFixed(2),
-    spendTime: getRandomInt(180)+3+"min",
-    lasthint: getRandomInt(180),
-  },
-  {
-    knowledgePoints: '空间向量与立体几何',
-    knowledgeStatus: '掌握',
-    prediction: Math.random().toFixed(2),
-    spendTime: getRandomInt(180)+3+"min",
-    lasthint: getRandomInt(180),
-  },
-  {
-    knowledgePoints: '统计',
-    knowledgeStatus: '掌握',
-    prediction: Math.random().toFixed(2),
-    spendTime: getRandomInt(180)+3+"min",
-    lasthint: getRandomInt(180),
-  },
-  {
-    knowledgePoints: '概率',
-    knowledgeStatus: '掌握',
-    prediction: Math.random().toFixed(2),
-    spendTime: getRandomInt(180)+3+"min",
-    lasthint: getRandomInt(180),
-  },
-  {
-    knowledgePoints: '离散型随机变量的分布列',
-    knowledgeStatus: '掌握',
-    prediction: Math.random().toFixed(2),
-    spendTime: getRandomInt(180)+3+"min",
-    lasthint: getRandomInt(180),
-  },
-  {
-    knowledgePoints: '三角函数',
-    knowledgeStatus: '掌握',
-    prediction: Math.random().toFixed(2),
-    spendTime: getRandomInt(180)+3+"min",
-    lasthint: getRandomInt(180),
-  },
-  {
-    knowledgePoints: '集合',
-    knowledgeStatus: '掌握',
-    prediction: Math.random().toFixed(2),
-    spendTime: getRandomInt(180)+3+"min",
-    lasthint: getRandomInt(180),
-  },
-  {
-    knowledgePoints: '集合',
-    knowledgeStatus: '掌握',
-    prediction: Math.random().toFixed(2),
-    spendTime: getRandomInt(180)+3+"min",
-    lasthint: getRandomInt(180),
-  },
-  {
-    knowledgePoints: '集合',
-    knowledgeStatus: '掌握',
-    prediction: Math.random().toFixed(2),
-    spendTime: getRandomInt(180)+3+"min",
-    lasthint: getRandomInt(180),
-  },
-  {
-    knowledgePoints: '集合',
-    knowledgeStatus: '掌握',
-    prediction: Math.random().toFixed(2),
-    spendTime: getRandomInt(180)+3+"min",
-    lasthint: getRandomInt(180),
-  },
-  {
-    knowledgePoints: '集合',
-    knowledgeStatus: '掌握',
-    prediction: Math.random().toFixed(2),
-    spendTime: getRandomInt(180)+3+"min",
-    lasthint: getRandomInt(180),
-  },
-  {
-    knowledgePoints: '集合',
-    knowledgeStatus: '掌握',
-    prediction: Math.random().toFixed(2),
-    spendTime: getRandomInt(180)+3+"min",
-    lasthint: getRandomInt(180),
-  },
-  {
-    knowledgePoints: '集合',
-    knowledgeStatus: '掌握',
-    prediction: Math.random().toFixed(2),
-    spendTime: getRandomInt(180)+3+"min",
-    lasthint: getRandomInt(180),
-  },
-  {
-    knowledgePoints: '集合',
-    knowledgeStatus: '掌握',
-    prediction: Math.random().toFixed(2),
-    spendTime: getRandomInt(180)+3+"min",
-    lasthint: getRandomInt(180),
-  },
-  {
-    knowledgePoints: '集合',
-    knowledgeStatus: '掌握',
-    prediction: Math.random().toFixed(2),
-    spendTime: getRandomInt(180)+3+"min",
-    lasthint: getRandomInt(180),
-  },
-  {
-    knowledgePoints: '集合',
-    knowledgeStatus: '掌握',
-    prediction: Math.random().toFixed(2),
-    spendTime: getRandomInt(180)+3+"min",
-    lasthint: getRandomInt(180),
-  },
-  {
-    knowledgePoints: '集合',
-    knowledgeStatus: '掌握',
-    prediction: Math.random().toFixed(2),
-    spendTime: getRandomInt(180)+3+"min",
-    lasthint: getRandomInt(180),
-  },
-  {
-    knowledgePoints: '集合',
-    knowledgeStatus: '掌握',
-    prediction: Math.random().toFixed(2),
-    spendTime: getRandomInt(180)+3+"min",
-    lasthint: getRandomInt(180),
-  },
-  {
-    knowledgePoints: '集合',
-    knowledgeStatus: '掌握',
-    prediction: Math.random().toFixed(2),
-    spendTime: getRandomInt(180)+3+"min",
-    lasthint: getRandomInt(180),
-  },
-  {
-    knowledgePoints: '集合',
-    knowledgeStatus: '掌握',
-    prediction: Math.random().toFixed(2),
-    spendTime: getRandomInt(180)+3+"min",
-    lasthint: getRandomInt(180),
-  },
-  {
-    knowledgePoints: '集合',
-    knowledgeStatus: '掌握',
-    prediction: Math.random().toFixed(2),
-    spendTime: getRandomInt(180)+3+"min",
-    lasthint: getRandomInt(180),
-  },
-  {
-    knowledgePoints: '集合',
-    knowledgeStatus: '掌握',
-    prediction: Math.random().toFixed(2),
-    spendTime: getRandomInt(180)+3+"min",
-    lasthint: getRandomInt(180),
-  },
-  {
-    knowledgePoints: '集合',
-    knowledgeStatus: '掌握',
-    prediction: Math.random().toFixed(2),
-    spendTime: getRandomInt(180)+3+"min",
-    lasthint: getRandomInt(180),
-  },
-  {
-    knowledgePoints: '集合',
-    knowledgeStatus: '掌握',
-    prediction: Math.random().toFixed(2),
-    spendTime: getRandomInt(180)+3+"min",
-    lasthint: getRandomInt(180),
-  },
-])
+const tableData = ref(useProjectBaseInfoStore().getTableData());
 
 console.log(tableData)
 
@@ -339,6 +65,10 @@ const logout = () => {
 
 <style lang="scss" scoped>
 @import "./home.css";
+@import "@/assets/styles/main-content.css";
+.select{
+  width: 200px;
+}
 </style>
 
 <template>
@@ -359,9 +89,9 @@ const logout = () => {
 
       <div class="aside">
         <div class="usercard">
-          <img class="avatar" src="@/assets/img/avatar.png" alt="">
+          <img class="avatar" :src="userDetail.avatar" alt="">
           <div class="userinfo">
-            <span class="name">{{ userDetail.name }}</span>
+            <span class="name">{{ userDetail.nickname }}</span>
             <span class="school">{{ userDetail.school }}</span>
             <span class="level">{{ userDetail.level }}</span>
           </div>
@@ -401,7 +131,7 @@ const logout = () => {
         <div class="main-content">
           <div class="header">
             <h3>
-              <el-select v-model="forecastValue" placeholder="请选择预测时间" :empty-values="[null, undefined]" clearable >
+              <el-select class="select" v-model="forecastValue" placeholder="请选择预测时间" :empty-values="[null, undefined]" clearable >
                 <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value" />
               </el-select>
               特定知识点的正确率预测
@@ -425,7 +155,7 @@ const logout = () => {
             </el-table-column>
             <el-table-column prop="prediction" label="掌握程度">
               <template #default="scope">
-                <el-progress :text-inside="true" :stroke-width="26" :percentage="(scope.row.prediction * 100).toFixed(2)"
+                <el-progress :text-inside="true" :stroke-width="26" :percentage="parseFloat((scope.row.prediction * 100).toFixed(2))"
                   color="#a0cfff" />
               </template>
             </el-table-column>

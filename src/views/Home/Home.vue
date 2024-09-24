@@ -33,6 +33,6 @@ const showForm = function () {
 </template>
 
 <style scoped>
-@import "./Home.less";
-@import "./main-content.less";
+@import "@/assets/styles/Home.less";
+@import "@/assets/styles/main-content.less";
 </style>

@@ -9,6 +9,7 @@ import { useRouter } from 'vue-router';
 import { userLogin } from '@/apis/user/apis';
 
 import { userRegisterData, userLoginData } from '@/types/user';
+import { useUserInfoStore } from '@/store/userInfo';
 
 const loginForm = ref<userLoginData>({
   password: '',
@@ -83,6 +84,20 @@ const goToDashboard = () => {
   //   ElMessage.error('登录失败');
   // });
 
+  const userInfo = {
+    avatar:'/src/assets/img/avatar.png',
+    birthday: '2002-10-21',
+    email: 'example@email.com',
+    intro: 'a student',
+    label: ['student'],
+    nickname: 'finn',
+    profession: 'student',
+    school: '东北师范大学附属中学',
+    level: '高一',
+    qq: '1122334455',
+    sex: '男',
+  }
+  useUserInfoStore().setUserInfo(userInfo);
   router.push({
     path: '/dashboard'
   });
