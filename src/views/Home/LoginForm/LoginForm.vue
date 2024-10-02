@@ -2,7 +2,6 @@
 import type { FormRules, FormInstance, TabsPaneContext } from 'element-plus';
 import { ElMessage } from 'element-plus'
 import { reactive, ref } from 'vue';
-import { defineModel } from 'vue';
 
 import { useRouter } from 'vue-router';
 

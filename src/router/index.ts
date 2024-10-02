@@ -18,18 +18,31 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: "/dashboard",
     name: "dashboard",
-    component: () => import(/* webpackChunkName: "home" */ '@/views/Dashboard/home.vue'),
+    redirect: "/dashboard/home",
+    component: () => import(/* webpackChunkName: "dashboard" */ '@/views/Dashboard/index.vue'),
+    children: [
+      {
+        path: 'home',
+        name: 'home',
+        component: () => import(/* webpackChunkName: "home" */ '@/views/Dashboard/home/home.vue'),
+      },
+      {
+        path: "user/:tab",
+        name: "user",
+        component: () => import(/* webpackChunkName: "user" */ '@/views/Dashboard/user/user.vue'),
+      },
+      {
+        path: 'test',
+        name: 'test',
+        component: () => import(/* webpackChunkName: "test" */ '@/views/Dashboard/test/test.vue'),
+      },
+      {
+        path: 'knowledge/:tab',
+        name: 'knowledge',
+        component: () => import(/* webpackChunkName: "knowledge" */ '@/views/Dashboard/knowledge/knowledge.vue'),
+      }
+    ],
   },
-  {
-    path: "/user",
-    name: "user",
-    component: () => import(/* webpackChunkName: "user" */ '@/views/Dashboard/user.vue'),
-  },
-  {
-    path: '/test',
-    name: 'test',
-    component: () => import(/* webpackChunkName: "test" */ '@/views/Dashboard/test.vue'),
-  }
 ];
 
 const router = createRouter({
@@ -46,9 +59,9 @@ router.beforeEach((to, from, next) => {
     // 初始进入页面时，判断是否有token, 有则直接跳转到dashboard
     console.log(userInfo);
     if (userInfo.token) {
-      next({ name: 'Dashboard'});
+      next({ name: 'Dashboard' });
     } else {
-      next({ name: 'LoginPage'});
+      next({ name: 'LoginPage' });
     }
   }
   else if (to.path === '/dashboard') {
@@ -56,7 +69,7 @@ router.beforeEach((to, from, next) => {
     if (userInfo.token) {
       next();
     } else {
-      next({ name: 'LoginPage'});
+      next({ name: 'LoginPage' });
     }
   }
   else {

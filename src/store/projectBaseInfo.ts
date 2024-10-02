@@ -15,23 +15,23 @@ export const useProjectBaseInfoStore = defineStore('projectBaseInfo', {
     menuNav: [
       {
         name: '个人中心',
-        router: 'user',
+        router: '/dashboard/user/baseinfo',
       },
       {
         name: '知识图谱',
-        router: 'knowledge',
+        router: '/dashboard/knowledge/getknowledge',
       },
       {
         name: '测评管理',
-        router: 'test',
+        router: '/dashboard/test',
       },
       {
         name: '数据采集',
-        router: 'data',
+        router: '/dashboard/data',
       },
       {
         name: '首页',
-        router: 'home',
+        router: '/dashboard/home',
       },
     ],
     tableData: [

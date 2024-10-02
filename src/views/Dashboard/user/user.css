@@ -1,0 +1,143 @@
+.shell{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+}
+
+.header{
+    height: 50px;
+    line-height: 50px;
+    color:#ffffff;
+    background-color: #337ecc;
+}
+
+.nav-left {
+    float:left;
+    margin: 0 0 0 30px;
+    color:#fff;
+    font-size: 23px;
+    font-weight: 800;
+    cursor: pointer;
+}
+.nav-right {
+    width: 100px;
+    float:right;
+    color:#fff;
+    font-size: 20px;
+    font-weight: 500;    
+    border-radius: 10px;
+    margin:0 5px;
+}
+.nav-btn{
+    cursor: pointer;
+    transition: 0.6s;
+}
+.nav-btn:hover{
+    background-color: #b0c1b0;
+    font-weight: 800;
+}
+
+.container{
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+    width: 100%;
+}
+
+.aside{
+    position: fixed;
+    left: 0;
+    width: 17%;
+    height: 100%;
+    background-color: #ffffff;
+    color: #000000;
+    box-sizing:border-box;
+    border:#000000 1px solid;
+    font-size: 18px;
+    font-size: 500;
+    display: flex;
+    flex-direction: column;
+}
+
+.asidemenu{
+    padding: 10px 0;
+    text-align: center;
+    cursor: pointer;
+    width: 100%;
+    height: 100%;
+}
+
+.asidemenu-item{
+    padding: 10px 0;
+    color:#2d2e32;
+    font:500;
+    background: #c9e8f8;
+    border-radius: 20px;
+    margin-top: 2rem;
+    transition: 0.5s;
+}
+
+.asidemenu-item:hover{
+    background: #c7e8c7;
+    font-weight: 800;
+}
+
+.asidemenu .active{
+    background: #619c61;
+    font-weight: 800;
+}
+
+.main{
+    margin-left: 17%;
+    width: 83%;
+    height: 100%;
+    color: #000000;
+    font-size: 18px;
+    font-weight: 500;
+    display: flex;
+    flex-direction: column;
+    justify-items: center;
+    align-items: center;
+}
+
+.usercard .avatar{
+    float: left;
+    border-radius: 50%;
+    border: 5px solid #ffffff;
+    margin:15px;
+    width: 100px;
+    height: 100px;
+    cursor: pointer;
+}
+
+.userinfo{
+    padding:5px 10px 0 5px;
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+}
+.userinfo .name{
+    font-size: 26px;
+    font-weight: 800;
+    margin: 10px 0 0 0;
+    cursor: pointer;
+}
+.userinfo .school{
+    font-size: 18px;
+    margin: 10px 0;
+    font-weight: 500;
+}
+.userinfo .level{
+    font-size: 18px;
+    font-weight: 800;
+    background-color: #666633;
+    width: fit-content;
+    padding: 0 10px;
+    color: #ffffff;
+    border-radius: 10px;
+    cursor: pointer;
+}
+.flex-grow {
+    flex-grow: 1;
+}

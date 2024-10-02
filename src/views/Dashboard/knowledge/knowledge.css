@@ -1,6 +1,8 @@
 .shell{
     display: flex;
     flex-direction: column;
+    height: 100%;
+    width: 100%;
 }
 
 .header{
@@ -36,6 +38,13 @@
     font-weight: 800;
 }
 
+.container{
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+    width: 100%;
+}
+
 .aside{
     position: fixed;
     left: 0;
@@ -51,10 +60,45 @@
     flex-direction: column;
 }
 
+.asidemenu{
+    padding: 10px 0;
+    text-align: center;
+    cursor: pointer;
+    width: 100%;
+    height: 100%;
+}
+
+.asidemenu-item{
+    padding: 10px 0;
+    color:#2d2e32;
+    font:500;
+    background: #c9e8f8;
+    border-radius: 20px;
+    margin-top: 2rem;
+    transition: 0.5s;
+}
+
+.asidemenu-item:hover{
+    background: #c7e8c7;
+    font-weight: 800;
+}
+
+.asidemenu .active{
+    background: #619c61;
+    font-weight: 800;
+}
+
 .main{
-    position: fixed;
-    right: 0;
+    margin-left: 17%;
     width: 83%;
+    height: 100%;
+    color: #000000;
+    font-size: 18px;
+    font-weight: 500;
+    display: flex;
+    flex-direction: column;
+    justify-items: center;
+    align-items: center;
 }
 
 .usercard .avatar{
@@ -96,104 +140,4 @@
 }
 .flex-grow {
     flex-grow: 1;
-}
-
-
-.todo-header{
-    text-align: left;
-    padding: 5px 15px;
-    font-size: 23px;
-}
-
-.todo-content{
-    color: #000000;
-    font-size: 20px;
-    padding: 5px 15px;
-    margin: 5px;
-    border-radius: 15px;
-    background-color: #e2e8ff;
-    cursor: pointer;
-}
-
-
-.todo-content .left{
-    float: left;
-}
-
-.question-box{
-    width: 100%;
-}
-
-.todo-content-item{
-    display: inline-block;
-    width: 35px;
-    height: 35px;
-    background-color: rgb(178, 193, 240);
-    border: #ffffff 1px solid;
-    color:#000000;
-    margin: 6px;
-}
-.todo-content-item:hover{
-    background-color: rgb(126, 137, 171);
-}
-
-.main-nav{
-    display: flex;
-    flex-direction: row;
-}
-
-.main-nav .search{
-    padding: 30px 0 0 20px;
-    float: left;
-}
-
-.main-nav .bar el-form{
-    height: 42px;
-}
-.main-nav .bar input{
-    width: 520px;
-    height: 15px;
-    border-radius: 42px;
-    border: 2px solid #3245be;
-    background: #ffffff;
-    transition: 0.3s linear;
-    padding: 10px;
-    font-size: 20px;
-}
-
-
-.main-nav .options{
-    margin:10px 20px;
-    height: 40px;
-    position: fixed;
-    right: 10px;
-}
-
-.op-btn{
-    margin: 15px;
-    font-size: 18px;
-    font-weight: 800;
-}
-
-.main-content{
-    background-color: #ffffff;
-}
-
-.options,
-.question{
-    margin: 20px 10px;
-    font-size: 22px;
-    color: #000000;
-    text-align: left;
-}
-
-.question-ops{
-    margin: 20px 10px;
-}
-
-.options{
-    display: inline;
-    width: 100px;
-    height: 50px;
-    text-align: center;
 }

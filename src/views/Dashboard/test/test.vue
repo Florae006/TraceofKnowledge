@@ -8,126 +8,7 @@ const userDetail = ref(useUserInfoStore().getUserInfo());
 
 const menuNav = ref(useProjectBaseInfoStore().getMenuNav());
 
-const questionList = ref([
-  {
-    type: '单选题',
-    questions: {
-      total: 12,
-      list: [
-        { qid: 123, },
-        { qid: 123, },
-        { qid: 123, },
-        { qid: 123, },
-        { qid: 123, },
-        { qid: 123, },
-        { qid: 123, },
-        { qid: 123, },
-        { qid: 123, },
-        { qid: 123, },
-        { qid: 123, },
-        { qid: 123, },
-      ]
-    }
-  },
-  {
-    type: '多选题',
-    questions: {
-      total: 36,
-      list: [
-        { qid: 123, },
-        { qid: 123, },
-        { qid: 123, },
-        { qid: 123, },
-        { qid: 123, },
-        { qid: 123, },
-        { qid: 123, },
-        { qid: 123, },
-        { qid: 123, },
-        { qid: 123, },
-        { qid: 123, },
-        { qid: 123, },
-        { qid: 123, },
-        { qid: 123, },
-        { qid: 123, },
-        { qid: 123, },
-        { qid: 123, },
-        { qid: 123, },
-        { qid: 123, },
-        { qid: 123, },
-        { qid: 123, },
-        { qid: 123, },
-        { qid: 123, },
-        { qid: 123, },
-        { qid: 123, },
-        { qid: 123, },
-        { qid: 123, },
-        { qid: 123, },
-        { qid: 123, },
-        { qid: 123, },
-        { qid: 123, },
-        { qid: 123, },
-        { qid: 123, },
-        { qid: 123, },
-        { qid: 123, },
-        { qid: 123, },
-      ]
-    }
-  },
-  {
-    type: '填空题',
-    questions: {
-      total: 31,
-      list: [
-        { qid: 123, },
-        { qid: 123, },
-        { qid: 123, },
-        { qid: 123, },
-        { qid: 123, },
-        { qid: 123, },
-        { qid: 123, },
-        { qid: 123, },
-        { qid: 123, },
-        { qid: 123, },
-        { qid: 123, },
-        { qid: 123, },
-        { qid: 123, },
-        { qid: 123, },
-        { qid: 123, },
-        { qid: 123, },
-        { qid: 123, },
-        { qid: 123, },
-        { qid: 123, },
-        { qid: 123, },
-        { qid: 123, },
-        { qid: 123, },
-        { qid: 123, },
-        { qid: 123, },
-        { qid: 123, },
-        { qid: 123, },
-        { qid: 123, },
-        { qid: 123, },
-        { qid: 123, },
-        { qid: 123, },
-        { qid: 123, },
-      ]
-    }
-  },
-  {
-    type: '简答题',
-    questions: {
-      total: 7,
-      list: [
-        { qid: 123, },
-        { qid: 123, },
-        { qid: 123, },
-        { qid: 123, },
-        { qid: 123, },
-        { qid: 123, },
-        { qid: 123, },
-      ]
-    }
-  },
-])
+const questionList = ref(useUserInfoStore().getQuestionList());
 
 const qList = ref([
   {
@@ -156,7 +37,7 @@ const qList = ref([
 </script>
 
 <style lang="scss" scoped>
-@import "./user.css";
+@import "./test.css";
 </style>
 
 <template>
@@ -165,7 +46,7 @@ const qList = ref([
     <div class="header">
 
       <div class="nav-left">
-        <span>“智识探踪”知识追踪系统-答题页面</span>
+        <span>“智识探踪”知识追踪系统-答题</span>
       </div>
       <div v-for="i in menuNav">
         <span class="nav-btn nav-right" @click="$router.push(i.router)">
@@ -184,9 +65,10 @@ const qList = ref([
             <span class="school">{{ userDetail.school }}</span>
             <span class="level">{{ userDetail.level }}</span>
           </div>
-        </div>
-        <div class="mytodolist">
-          <el-scrollbar height="60%">
+          </div>
+
+          <div class="mytodolist">
+            <el-scrollbar height="60%">
             <h3 class="todo-header">答题卡</h3>
             <div class="todo-content" v-for="i in questionList">
               <span class="left">{{ i.type }}</span>
@@ -199,7 +81,7 @@ const qList = ref([
                 </span>
               </div>
             </div>
-          </el-scrollbar>
+            </el-scrollbar>
 
         </div>
       </div>
