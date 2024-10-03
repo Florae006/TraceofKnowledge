@@ -2,9 +2,11 @@
 import { ref } from 'vue';
 import { useUserInfoStore } from '@/store/userInfo';
 import { useProjectBaseInfoStore } from '@/store/projectBaseInfo';
-// const datevalue = ref(new Date())
-
+import { useRouter } from 'vue-router';
 import { Search } from '@element-plus/icons-vue'
+import { ElMessageBox } from 'element-plus';
+
+const $router = useRouter();
 
 const userDetail = ref(useUserInfoStore().getUserInfo());
 
@@ -61,12 +63,24 @@ const logout = () => {
   console.log('logout')
 }
 
+
+const topath = (dev: boolean, path: string) => {
+  if (dev) {
+    ElMessageBox.alert('该功能正在开发中，敬请期待', '提示', {
+      confirmButtonText: '确定'
+    });
+  } else {
+    $router.push(path);
+  }
+}
+
 </script>
 
 <style lang="scss" scoped>
 @import "./home.css";
 @import "@/assets/styles/main-content.css";
-.select{
+
+.select {
   width: 200px;
 }
 </style>
@@ -79,7 +93,7 @@ const logout = () => {
       </div>
 
       <div v-for="i in menuNav">
-        <span class="nav-btn nav-right" @click="$router.push(i.router)">
+        <span class="nav-btn nav-right" @click="topath(i.dev, i.router)">
           {{ i.name }}
         </span>
       </div>
@@ -131,7 +145,8 @@ const logout = () => {
         <div class="main-content">
           <div class="header">
             <h3>
-              <el-select class="select" v-model="forecastValue" placeholder="请选择预测时间" :empty-values="[null, undefined]" clearable >
+              <el-select class="select" v-model="forecastValue" placeholder="请选择预测时间" :empty-values="[null, undefined]"
+                clearable>
                 <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value" />
               </el-select>
               特定知识点的正确率预测
@@ -140,12 +155,12 @@ const logout = () => {
           <el-table :data="tableData" height="600" stripe>
             <el-table-column type="index" width="80" />
             <el-table-column prop="knowledgePoints" label="知识点" width="180" />
-            <el-table-column prop="knowledgeStatus" label="掌握状态" width="180" >
+            <el-table-column prop="knowledgeStatus" label="掌握状态" width="180">
               <template #default="scope">
-                <el-text v-if="scope.row.prediction>=0.8">
+                <el-text v-if="scope.row.prediction >= 0.8">
                   <el-text type="success">掌握</el-text>
                 </el-text>
-                <el-text v-else-if="scope.row.prediction>=0.5">
+                <el-text v-else-if="scope.row.prediction >= 0.5">
                   <el-text type="warning">一般</el-text>
                 </el-text>
                 <el-text v-else>
@@ -155,8 +170,8 @@ const logout = () => {
             </el-table-column>
             <el-table-column prop="prediction" label="掌握程度">
               <template #default="scope">
-                <el-progress :text-inside="true" :stroke-width="26" :percentage="parseFloat((scope.row.prediction * 100).toFixed(2))"
-                  color="#a0cfff" />
+                <el-progress :text-inside="true" :stroke-width="26"
+                  :percentage="parseFloat((scope.row.prediction * 100).toFixed(2))" color="#a0cfff" />
               </template>
             </el-table-column>
             <el-table-column prop="spendTime" label="作答时间" width="180" />
@@ -169,7 +184,7 @@ const logout = () => {
                     </el-text>
                     <el-text v-else-if="scope.row.lasthint == 0" class="mx-1" type="success">今天已提示</el-text>
                     <el-text v-else class="mx-1" type="info">从未提示</el-text>
-                    </el-col>
+                  </el-col>
                 </el-row>
                 <el-row>
                   <el-col :span="24">

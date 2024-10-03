@@ -5,7 +5,7 @@
         <span>“智识探踪”知识追踪系统-知识图谱</span>
       </div>
       <div v-for="i in menuNav">
-        <span class="nav-btn nav-right" @click="topath(false, i.router)">
+        <span class="nav-btn nav-right" @click="topath(i.dev, i.router)">
           {{ i.name }}
         </span>
       </div>

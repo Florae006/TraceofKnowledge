@@ -33,48 +33,64 @@ onMounted(() => {
     title: {
       text: '最近答题情况',
       subtext: '数据来自模型预测',
-      left: 'center'
+      left: 'left'
     },
     tooltip: {
       trigger: 'axis'
     },
     legend: {
-      left: 'left',
-      data: [
-        '平均准确率',
-        '我的准确率',
-      ]
     },
-    radar: [
-      {
-        indicator: [
-          { name: '输入输出流', max: 100 },
-          { name: '数组', max: 100 },
-          { name: '函数', max: 100 },
-          { name: '字符串', max: 100 },
-          { name: '循环', max: 100 }
-        ],
-        center: ['50%', '50%'],
-        radius: 80
+    toolbox: {
+      show: true,
+      feature: {
+        dataView: { show: true, readOnly: false },
+        restore: { show: true },
+        saveAsImage: { show: true }
       }
-    ],
+    },
+    xAxis: {
+      type: 'category',
+      boundaryGap: false,
+      data: ['平行四边形的面积', '对数', '除法', '三角形的面积', '将小数转换为百分比', '将百分比转换为小数', '复数的加法和减法', '复平面', '绘制抛物线', '配方法'],
+    },
+    yAxis: {
+      type: 'value',
+      axisLabel: {
+        formatter: '{value} %'
+      }
+    },
     series: [
       {
-        type: 'radar',
-        tooltip: {
-          trigger: 'item'
+        name: '我的准确率',
+        type: 'line',
+        data: [90, 80, 20, 10, 70, 50, 60, 80, 30],
+        markPoint: {
+          data: [
+            { type: 'max', name: '最大值' },
+            { type: 'min', name: '最小值' }
+          ]
         },
-        areaStyle: { type: 'default' },
-        data: [
-          {
-            value: [85, 90, 90, 95, 95],
-            name: '平均准确率'
-          },
-          {
-            value: [60, 73, 85, 40, 82],
-            name: '我的准确率'
-          },
-        ]
+        markLine: {
+          data: [
+            { type: 'average', name: '平均值' }
+          ]
+        }
+      },
+      {
+        name: '平均准确率',
+        type: 'line',
+        data: [80, 40, 30, 70, 60, 50, 20, 10, 80],
+        markPoint: {
+          data: [
+            { type: 'max', name: '最大值' },
+            { type: 'min', name: '最小值' }
+          ]
+        },
+        markLine: {
+          data: [
+            { type: 'average', name: '平均值' }
+          ]
+        }
       }
     ]
   };

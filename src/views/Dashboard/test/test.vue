@@ -2,7 +2,10 @@
 import { ref } from 'vue';
 import { useUserInfoStore } from '@/store/userInfo';
 import { useProjectBaseInfoStore } from '@/store/projectBaseInfo';
-// const datevalue = ref(new Date())
+import { useRouter } from 'vue-router';
+import { ElMessageBox } from 'element-plus';
+
+const $router = useRouter();
 
 const userDetail = ref(useUserInfoStore().getUserInfo());
 
@@ -34,6 +37,16 @@ const qList = ref([
   }
 ])
 
+const topath = (dev: boolean, path: string) => {
+  if (dev) {
+    ElMessageBox.alert('该功能正在开发中，敬请期待', '提示', {
+      confirmButtonText: '确定'
+    });
+  } else {
+    $router.push(path);
+  }
+}
+
 </script>
 
 <style lang="scss" scoped>
@@ -49,7 +62,7 @@ const qList = ref([
         <span>“智识探踪”知识追踪系统-答题</span>
       </div>
       <div v-for="i in menuNav">
-        <span class="nav-btn nav-right" @click="$router.push(i.router)">
+        <span class="nav-btn nav-right" @click="topath(i.dev, i.router)">
           {{ i.name }}
         </span>
       </div>
@@ -65,10 +78,10 @@ const qList = ref([
             <span class="school">{{ userDetail.school }}</span>
             <span class="level">{{ userDetail.level }}</span>
           </div>
-          </div>
+        </div>
 
-          <div class="mytodolist">
-            <el-scrollbar height="60%">
+        <div class="mytodolist">
+          <el-scrollbar height="60%">
             <h3 class="todo-header">答题卡</h3>
             <div class="todo-content" v-for="i in questionList">
               <span class="left">{{ i.type }}</span>
@@ -81,7 +94,7 @@ const qList = ref([
                 </span>
               </div>
             </div>
-            </el-scrollbar>
+          </el-scrollbar>
 
         </div>
       </div>

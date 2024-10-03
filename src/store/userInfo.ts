@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia';
-import { userBaseInfo } from '@/types/user';
+import { userProfileRes } from '@/types/user';
 
 const testTime = new Date().getFullYear() + '-' + (new Date().getMonth() + 1) + '-' + new Date().getDate();
 
@@ -171,17 +171,12 @@ export const useUserInfoStore = defineStore('userInfo', {
   }),
   persist: true,
   actions: {
-    setUserInfo(userInfo: userBaseInfo) {
+    setUserInfo(userInfo: userProfileRes) {
       this.avatar = userInfo.avatar;
-      this.birthday = userInfo.birthday;
       this.email = userInfo.email;
-      this.intro = userInfo.intro;
-      this.label = userInfo.label;
       this.nickname = userInfo.nickname;
-      this.profession = userInfo.profession;
       this.school = userInfo.school;
-      this.level = userInfo.level
-      this.qq = userInfo.qq;
+      this.level = userInfo.level;
       this.sex = userInfo.sex;
     },
     getUserInfo() {
