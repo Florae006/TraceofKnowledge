@@ -1,18 +1,26 @@
 <template>
-  <div>
-    <div style="border: #efefef solid 1px; height: calc(100vh - 100px);width: 100%;">
-      <relation-graph ref="graphRef$" :options="options" />
+  <div class="w-full h-full">
+    <div class="gp-shell">
+      <relation-graph ref="graphRef" :options="options" />
     </div>
   </div>
 </template>
 
+<style lang="scss" scoped>
+.gp-shell {
+  border: #efefef solid 1px;
+  height: 90vh;
+  width: 80vw;
+}
+</style>
+
 <script setup lang="ts">
 import { onMounted, ref } from 'vue'
-import RelationGraph from 'relation-graph/vue3'
-const graphRef$ = ref<RelationGraph>()
-const options = {
+import RelationGraph, { RGOptions } from 'relation-graph-vue3';
+const graphRef = ref<RelationGraph>()
+const options = ref<RGOptions>({
   defaultExpandHolderPosition: 'right'
-}
+})
 onMounted(() => {
   const jsonData = {
     rootId: 'a',
@@ -32,17 +40,8 @@ onMounted(() => {
       { from: 'a', to: 'f', },
     ],
   }
-  // The node and line in the above data can refer to the options in "Node" and "Link & Line" for configuration.
-  // Node: https://www.relation-graph.com/#/docs/node
-  // Link & Line: https://www.relation-graph.com/#/docs/link
-  graphRef$.value.setJsonData(jsonData)
-  // The graphRef$.value.setJsonData(jsonData, callback) method is a convenient method that is equivalent to the following code:
-  //  const graphInstance = graphRef$.value.getInstance();
-  //  graphInstance.addNodes(jsonData.nodes);
-  //  graphInstance.addLines(jsonData.lines);
-  //  graphInstance.rootNode = graphInstance.getNodeById(jsonData.rootId);
-  //  await graphInstance.doLayout(); // Layout using the layouter set in graphOptions
-  //  await graphInstance.moveToCenter(); // Find the center based on node distribution and center the view
-  //  await graphInstance.zoomToFit(); // Zoom to fit, so that all nodes can be displayed in the visible area
+  if (graphRef.value) {
+    graphRef.value.setJsonData(jsonData)
+  }
 })
 </script>

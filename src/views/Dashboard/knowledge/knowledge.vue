@@ -29,7 +29,13 @@
         </div>
       </div>
       <div class="main">
-        <div v-if="$route.params.tab == 'getknowledge'">
+        <div v-if="$route.params.tab == 'recent'" class="w-full h-full">
+          <RecentResult />
+        </div>
+        <div v-else-if="$route.params.tab == 'accuracy'" class="w-full h-full">
+          <Accuracy />
+        </div>
+        <div v-else-if="$route.params.tab == 'relationship'" class="w-full h-full">
           <KnoledgeGraph />
         </div>
       </div>
@@ -48,6 +54,8 @@ import { useUserInfoStore } from '@/store/userInfo';
 import { useProjectBaseInfoStore } from '@/store/projectBaseInfo';
 import { ElMessageBox } from 'element-plus';
 import KnoledgeGraph from '@/components/KnoledgeGraph.vue';
+import Accuracy from '@/components/Accuracy.vue';
+import RecentResult from '@/components/RecentResult.vue';
 
 const $router = useRouter();
 
@@ -57,9 +65,15 @@ const menuNav = ref(useProjectBaseInfoStore().getMenuNav());
 
 const tablist = ref([
   {
-    name: '查看知识图谱',
-    tab: 'getknowledge',
-    path: '/dashboard/knowledge/getknowledge',
+    name: '最近答题情况',
+    tab: 'recent',
+    path: '/dashboard/knowledge/recent',
+    dev: false,
+  },
+  {
+    name: '掌握情况分析',
+    tab: 'accuracy',
+    path: '/dashboard/knowledge/accuracy',
     dev: false,
   },
   {
@@ -69,10 +83,10 @@ const tablist = ref([
     dev: true
   },
   {
-    name: '知识点关系管理',
-    tab: 'manageknowledgerelation',
-    path: '/dashboard/knowledge/manageknowledgerelation',
-    dev: true
+    name: '知识点关系',
+    tab: 'relationship',
+    path: '/dashboard/knowledge/relationship',
+    dev: false
   },
 ])
 
