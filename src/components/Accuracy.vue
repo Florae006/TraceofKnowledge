@@ -48,14 +48,15 @@ onMounted(() => {
     radar: [
       {
         indicator: [
-          { name: '输入输出流', max: 100 },
-          { name: '数组', max: 100 },
-          { name: '函数', max: 100 },
-          { name: '字符串', max: 100 },
-          { name: '循环', max: 100 }
+          { name: '平行四边形判定', max: 100 },
+          { name: '三角形的中位线', max: 100 },
+          { name: '平行四边形定义', max: 100 },
+          { name: '平行四边形性质', max: 100 },
+          { name: '两条平行线之间的距离', max: 100 },
+          { name: '特殊平行四边形', max: 100 }
         ],
         center: ['50%', '50%'],
-        radius: 80
+        radius: 120
       }
     ],
     series: [
@@ -67,11 +68,11 @@ onMounted(() => {
         areaStyle: { type: 'default' },
         data: [
           {
-            value: [85, 90, 90, 95, 95],
+            value: [95, 95, 95, 75, 95, 80],
             name: '平均准确率'
           },
           {
-            value: [60, 73, 85, 40, 82],
+            value: [85, 80, 90, 95, 95, 90],
             name: '我的准确率'
           },
         ]
