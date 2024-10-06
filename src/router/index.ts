@@ -43,6 +43,11 @@ const routes: Array<RouteRecordRaw> = [
       }
     ],
   },
+  {
+    name: 'NotFound',
+    path: '/:pathMatch(.*)*',
+    component: () => import('@/views/NotFound/NotFound.vue'),
+  }
 ];
 
 const router = createRouter({

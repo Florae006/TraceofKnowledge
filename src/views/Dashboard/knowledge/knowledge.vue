@@ -36,7 +36,19 @@
           <Accuracy />
         </div>
         <div v-else-if="$route.params.tab == 'relationship'" class="w-full h-full">
-          <KnoledgeGraph />
+          <div
+          class="w-full py-10 h-8"
+          >
+          <span>展示的关系类型：</span>
+            <el-select v-model="relationType" placeholder="请选择关系类型" style="width: 200px;">
+              <el-option v-for="item in relationTypeOptions" :label="item.label" :value="item.value"
+                :key="item.value" />
+              />
+            </el-select>
+          </div>
+          <div class="w-full h-full">
+          <KnownledgeGraph :relationType="relationType" />
+          </div>
         </div>
       </div>
     </div>
@@ -53,7 +65,7 @@ import { useRouter } from 'vue-router';
 import { useUserInfoStore } from '@/store/userInfo';
 import { useProjectBaseInfoStore } from '@/store/projectBaseInfo';
 import { ElMessageBox } from 'element-plus';
-import KnoledgeGraph from '@/components/KnoledgeGraph.vue';
+import KnownledgeGraph from '@/components/KnownledgeGraph.vue';
 import Accuracy from '@/components/Accuracy.vue';
 import RecentResult from '@/components/RecentResult.vue';
 
@@ -99,4 +111,29 @@ const topath = (dev: boolean, path: string) => {
     $router.push(path);
   }
 }
+
+const relationType = ref('brother');
+const relationTypeOptions = ref([
+  {
+    label: '同级关系',
+    value: 'brother'
+  },
+  {
+    label: '上级关系',
+    value: 'parallel'
+  },
+  {
+    label: '相似关系',
+    value: 'similar'
+  },
+  {
+    label: '前后关系',
+    value: 'prepost'
+  },
+  {
+    label: '所有关系',
+    value: 'all'
+  },
+])
+
 </script>
